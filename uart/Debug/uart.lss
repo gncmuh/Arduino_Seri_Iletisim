@@ -1,0 +1,466 @@
+
+uart.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000010  00800100  000002a4  00000318  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000002a4  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  00000328  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000358  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000058  00000000  00000000  00000398  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000008fc  00000000  00000000  000003f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000072c  00000000  00000000  00000cec  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000034c  00000000  00000000  00001418  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000000cc  00000000  00000000  00001764  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000397  00000000  00000000  00001830  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000028e  00000000  00000000  00001bc7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000050  00000000  00000000  00001e55  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   8:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  10:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  14:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  18:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  1c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  20:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  24:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  28:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  2c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  30:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  34:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  38:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  3c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  40:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  44:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  48:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  4c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  50:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  54:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  58:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  5c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  60:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  64:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e4 ea       	ldi	r30, 0xA4	; 164
+  7c:	f2 e0       	ldi	r31, 0x02	; 2
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a0 31       	cpi	r26, 0x10	; 16
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+  8a:	0e 94 4b 00 	call	0x96	; 0x96 <main>
+  8e:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <_exit>
+
+00000092 <__bad_interrupt>:
+  92:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000096 <main>:
+#define baud_calisma (F_CPU/16/baud)-1//mikrokontrolcü veri kaðýdý üzerinden frekans hýzýna göre baud denklemi seçilmelidir.
+#include <util/delay.h>
+
+int main(void)
+{
+    uart_begin(baud_calisma);
+  96:	87 e6       	ldi	r24, 0x67	; 103
+  98:	0e 94 5b 00 	call	0xb6	; 0xb6 <uart_begin>
+	uart_char("hello world");uart_char("\r\n");
+  9c:	80 e0       	ldi	r24, 0x00	; 0
+  9e:	91 e0       	ldi	r25, 0x01	; 1
+  a0:	0e 94 6d 00 	call	0xda	; 0xda <uart_char>
+  a4:	8c e0       	ldi	r24, 0x0C	; 12
+  a6:	91 e0       	ldi	r25, 0x01	; 1
+  a8:	0e 94 6d 00 	call	0xda	; 0xda <uart_char>
+	uart_int(1023);
+  ac:	8f ef       	ldi	r24, 0xFF	; 255
+  ae:	93 e0       	ldi	r25, 0x03	; 3
+  b0:	0e 94 80 00 	call	0x100	; 0x100 <uart_int>
+  b4:	ff cf       	rjmp	.-2      	; 0xb4 <main+0x1e>
+
+000000b6 <uart_begin>:
+#include <avr/io.h>
+#include "UART.h"
+
+void uart_begin(uint8_t uart_hiz){
+	
+	UBRR0H=(uart_hiz>>8);
+  b6:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+	UBRR0L=uart_hiz;
+  ba:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+	
+	UCSR0B=(1<<TXEN0) | (1<<RXEN0);
+  be:	88 e1       	ldi	r24, 0x18	; 24
+  c0:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
+	UCSR0C=(1<<UCSZ00) | (1<<UCSZ01);	
+  c4:	86 e0       	ldi	r24, 0x06	; 6
+  c6:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
+  ca:	08 95       	ret
+
+000000cc <uart_write>:
+}
+void uart_write(uint8_t veri){
+	
+	while(!(UCSR0A & (1<<UDRE0)));
+  cc:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+  d0:	95 ff       	sbrs	r25, 5
+  d2:	fc cf       	rjmp	.-8      	; 0xcc <uart_write>
+
+	UDR0=veri;
+  d4:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+  d8:	08 95       	ret
+
+000000da <uart_char>:
+}
+
+void uart_char(char *karakter){
+  da:	0f 93       	push	r16
+  dc:	1f 93       	push	r17
+  de:	cf 93       	push	r28
+  e0:	8c 01       	movw	r16, r24
+	
+	uint8_t sayac=0;
+  e2:	c0 e0       	ldi	r28, 0x00	; 0
+	while(karakter[sayac]!='\0'){
+  e4:	03 c0       	rjmp	.+6      	; 0xec <uart_char+0x12>
+		uart_write(karakter[sayac]);
+  e6:	0e 94 66 00 	call	0xcc	; 0xcc <uart_write>
+		sayac++;
+  ea:	cf 5f       	subi	r28, 0xFF	; 255
+}
+
+void uart_char(char *karakter){
+	
+	uint8_t sayac=0;
+	while(karakter[sayac]!='\0'){
+  ec:	f8 01       	movw	r30, r16
+  ee:	ec 0f       	add	r30, r28
+  f0:	f1 1d       	adc	r31, r1
+  f2:	80 81       	ld	r24, Z
+  f4:	81 11       	cpse	r24, r1
+  f6:	f7 cf       	rjmp	.-18     	; 0xe6 <uart_char+0xc>
+		uart_write(karakter[sayac]);
+		sayac++;
+	}	
+}
+  f8:	cf 91       	pop	r28
+  fa:	1f 91       	pop	r17
+  fc:	0f 91       	pop	r16
+  fe:	08 95       	ret
+
+00000100 <uart_int>:
+void uart_int(int veri){
+ 100:	8f 92       	push	r8
+ 102:	9f 92       	push	r9
+ 104:	af 92       	push	r10
+ 106:	bf 92       	push	r11
+ 108:	cf 92       	push	r12
+ 10a:	df 92       	push	r13
+ 10c:	ef 92       	push	r14
+ 10e:	ff 92       	push	r15
+ 110:	0f 93       	push	r16
+ 112:	1f 93       	push	r17
+ 114:	cf 93       	push	r28
+ 116:	df 93       	push	r29
+ 118:	00 d0       	rcall	.+0      	; 0x11a <uart_int+0x1a>
+ 11a:	00 d0       	rcall	.+0      	; 0x11c <uart_int+0x1c>
+ 11c:	cd b7       	in	r28, 0x3d	; 61
+ 11e:	de b7       	in	r29, 0x3e	; 62
+ 120:	fc 01       	movw	r30, r24
+	{
+		char v='0'+veri;
+		uart_write(v);
+	}
+	
+ 122:	cd b6       	in	r12, 0x3d	; 61
+ 124:	de b6       	in	r13, 0x3e	; 62
+		sayac++;
+	}	
+}
+void uart_int(int veri){
+	
+	volatile int basamak_sayi=10;
+ 126:	8a e0       	ldi	r24, 0x0A	; 10
+ 128:	90 e0       	ldi	r25, 0x00	; 0
+ 12a:	9a 83       	std	Y+2, r25	; 0x02
+ 12c:	89 83       	std	Y+1, r24	; 0x01
+	volatile int basamak=1;
+ 12e:	81 e0       	ldi	r24, 0x01	; 1
+ 130:	90 e0       	ldi	r25, 0x00	; 0
+ 132:	9c 83       	std	Y+4, r25	; 0x04
+ 134:	8b 83       	std	Y+3, r24	; 0x03
+	int i;
+	if(veri>9)
+ 136:	ea 30       	cpi	r30, 0x0A	; 10
+ 138:	f1 05       	cpc	r31, r1
+ 13a:	ec f4       	brge	.+58     	; 0x176 <uart_int+0x76>
+ 13c:	6f c0       	rjmp	.+222    	; 0x21c <uart_int+0x11c>
+	{
+		for(i=0; i<veri; i++)
+		{
+			if(i>basamak_sayi)
+ 13e:	29 81       	ldd	r18, Y+1	; 0x01
+ 140:	3a 81       	ldd	r19, Y+2	; 0x02
+ 142:	28 17       	cp	r18, r24
+ 144:	39 07       	cpc	r19, r25
+ 146:	ac f4       	brge	.+42     	; 0x172 <uart_int+0x72>
+			{
+				basamak_sayi*=10;
+ 148:	29 81       	ldd	r18, Y+1	; 0x01
+ 14a:	3a 81       	ldd	r19, Y+2	; 0x02
+ 14c:	a9 01       	movw	r20, r18
+ 14e:	44 0f       	add	r20, r20
+ 150:	55 1f       	adc	r21, r21
+ 152:	22 0f       	add	r18, r18
+ 154:	33 1f       	adc	r19, r19
+ 156:	22 0f       	add	r18, r18
+ 158:	33 1f       	adc	r19, r19
+ 15a:	22 0f       	add	r18, r18
+ 15c:	33 1f       	adc	r19, r19
+ 15e:	24 0f       	add	r18, r20
+ 160:	35 1f       	adc	r19, r21
+ 162:	3a 83       	std	Y+2, r19	; 0x02
+ 164:	29 83       	std	Y+1, r18	; 0x01
+				basamak++;
+ 166:	2b 81       	ldd	r18, Y+3	; 0x03
+ 168:	3c 81       	ldd	r19, Y+4	; 0x04
+ 16a:	2f 5f       	subi	r18, 0xFF	; 255
+ 16c:	3f 4f       	sbci	r19, 0xFF	; 255
+ 16e:	3c 83       	std	Y+4, r19	; 0x04
+ 170:	2b 83       	std	Y+3, r18	; 0x03
+	volatile int basamak_sayi=10;
+	volatile int basamak=1;
+	int i;
+	if(veri>9)
+	{
+		for(i=0; i<veri; i++)
+ 172:	01 96       	adiw	r24, 0x01	; 1
+ 174:	02 c0       	rjmp	.+4      	; 0x17a <uart_int+0x7a>
+ 176:	80 e0       	ldi	r24, 0x00	; 0
+ 178:	90 e0       	ldi	r25, 0x00	; 0
+ 17a:	8e 17       	cp	r24, r30
+ 17c:	9f 07       	cpc	r25, r31
+ 17e:	fc f2       	brlt	.-66     	; 0x13e <uart_int+0x3e>
+			{
+				basamak_sayi*=10;
+				basamak++;
+			}
+		}
+		char g_veri[basamak];
+ 180:	8b 81       	ldd	r24, Y+3	; 0x03
+ 182:	9c 81       	ldd	r25, Y+4	; 0x04
+ 184:	ad b6       	in	r10, 0x3d	; 61
+ 186:	be b6       	in	r11, 0x3e	; 62
+ 188:	2d b7       	in	r18, 0x3d	; 61
+ 18a:	3e b7       	in	r19, 0x3e	; 62
+ 18c:	28 1b       	sub	r18, r24
+ 18e:	39 0b       	sbc	r19, r25
+ 190:	0f b6       	in	r0, 0x3f	; 63
+ 192:	f8 94       	cli
+ 194:	3e bf       	out	0x3e, r19	; 62
+ 196:	0f be       	out	0x3f, r0	; 63
+ 198:	2d bf       	out	0x3d, r18	; 61
+ 19a:	8d b7       	in	r24, 0x3d	; 61
+ 19c:	9e b7       	in	r25, 0x3e	; 62
+ 19e:	01 96       	adiw	r24, 0x01	; 1
+ 1a0:	7c 01       	movw	r14, r24
+		int j,sayi;
+		for(j=0; j<basamak; j++)
+ 1a2:	20 e0       	ldi	r18, 0x00	; 0
+ 1a4:	30 e0       	ldi	r19, 0x00	; 0
+ 1a6:	1f c0       	rjmp	.+62     	; 0x1e6 <uart_int+0xe6>
+		{
+			sayi='0'+(veri%basamak_sayi)/(basamak_sayi/10);
+ 1a8:	69 81       	ldd	r22, Y+1	; 0x01
+ 1aa:	7a 81       	ldd	r23, Y+2	; 0x02
+ 1ac:	cf 01       	movw	r24, r30
+ 1ae:	0e 94 28 01 	call	0x250	; 0x250 <__divmodhi4>
+ 1b2:	4c 01       	movw	r8, r24
+ 1b4:	89 81       	ldd	r24, Y+1	; 0x01
+ 1b6:	9a 81       	ldd	r25, Y+2	; 0x02
+ 1b8:	0a e0       	ldi	r16, 0x0A	; 10
+ 1ba:	10 e0       	ldi	r17, 0x00	; 0
+ 1bc:	b8 01       	movw	r22, r16
+ 1be:	0e 94 28 01 	call	0x250	; 0x250 <__divmodhi4>
+ 1c2:	c4 01       	movw	r24, r8
+ 1c4:	0e 94 28 01 	call	0x250	; 0x250 <__divmodhi4>
+ 1c8:	60 5d       	subi	r22, 0xD0	; 208
+ 1ca:	7f 4f       	sbci	r23, 0xFF	; 255
+			g_veri[j]=sayi;
+ 1cc:	d7 01       	movw	r26, r14
+ 1ce:	a2 0f       	add	r26, r18
+ 1d0:	b3 1f       	adc	r27, r19
+ 1d2:	6c 93       	st	X, r22
+			basamak_sayi=basamak_sayi/10;
+ 1d4:	89 81       	ldd	r24, Y+1	; 0x01
+ 1d6:	9a 81       	ldd	r25, Y+2	; 0x02
+ 1d8:	b8 01       	movw	r22, r16
+ 1da:	0e 94 28 01 	call	0x250	; 0x250 <__divmodhi4>
+ 1de:	7a 83       	std	Y+2, r23	; 0x02
+ 1e0:	69 83       	std	Y+1, r22	; 0x01
+				basamak++;
+			}
+		}
+		char g_veri[basamak];
+		int j,sayi;
+		for(j=0; j<basamak; j++)
+ 1e2:	2f 5f       	subi	r18, 0xFF	; 255
+ 1e4:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1e6:	8b 81       	ldd	r24, Y+3	; 0x03
+ 1e8:	9c 81       	ldd	r25, Y+4	; 0x04
+ 1ea:	28 17       	cp	r18, r24
+ 1ec:	39 07       	cpc	r19, r25
+ 1ee:	e4 f2       	brlt	.-72     	; 0x1a8 <uart_int+0xa8>
+ 1f0:	00 e0       	ldi	r16, 0x00	; 0
+ 1f2:	10 e0       	ldi	r17, 0x00	; 0
+ 1f4:	08 c0       	rjmp	.+16     	; 0x206 <uart_int+0x106>
+		}
+		int f;
+		for(f=0; f<basamak; f++)
+		{
+			
+			uart_write(g_veri[f]);
+ 1f6:	f7 01       	movw	r30, r14
+ 1f8:	e0 0f       	add	r30, r16
+ 1fa:	f1 1f       	adc	r31, r17
+ 1fc:	80 81       	ld	r24, Z
+ 1fe:	0e 94 66 00 	call	0xcc	; 0xcc <uart_write>
+			sayi='0'+(veri%basamak_sayi)/(basamak_sayi/10);
+			g_veri[j]=sayi;
+			basamak_sayi=basamak_sayi/10;
+		}
+		int f;
+		for(f=0; f<basamak; f++)
+ 202:	0f 5f       	subi	r16, 0xFF	; 255
+ 204:	1f 4f       	sbci	r17, 0xFF	; 255
+ 206:	8b 81       	ldd	r24, Y+3	; 0x03
+ 208:	9c 81       	ldd	r25, Y+4	; 0x04
+ 20a:	08 17       	cp	r16, r24
+ 20c:	19 07       	cpc	r17, r25
+ 20e:	9c f3       	brlt	.-26     	; 0x1f6 <uart_int+0xf6>
+ 210:	0f b6       	in	r0, 0x3f	; 63
+ 212:	f8 94       	cli
+ 214:	be be       	out	0x3e, r11	; 62
+ 216:	0f be       	out	0x3f, r0	; 63
+ 218:	ad be       	out	0x3d, r10	; 61
+ 21a:	04 c0       	rjmp	.+8      	; 0x224 <uart_int+0x124>
+		}
+	}
+	else
+	{
+		char v='0'+veri;
+		uart_write(v);
+ 21c:	80 e3       	ldi	r24, 0x30	; 48
+ 21e:	8e 0f       	add	r24, r30
+ 220:	0e 94 66 00 	call	0xcc	; 0xcc <uart_write>
+	}
+	
+ 224:	0f b6       	in	r0, 0x3f	; 63
+ 226:	f8 94       	cli
+ 228:	de be       	out	0x3e, r13	; 62
+ 22a:	0f be       	out	0x3f, r0	; 63
+ 22c:	cd be       	out	0x3d, r12	; 61
+ 22e:	0f 90       	pop	r0
+ 230:	0f 90       	pop	r0
+ 232:	0f 90       	pop	r0
+ 234:	0f 90       	pop	r0
+ 236:	df 91       	pop	r29
+ 238:	cf 91       	pop	r28
+ 23a:	1f 91       	pop	r17
+ 23c:	0f 91       	pop	r16
+ 23e:	ff 90       	pop	r15
+ 240:	ef 90       	pop	r14
+ 242:	df 90       	pop	r13
+ 244:	cf 90       	pop	r12
+ 246:	bf 90       	pop	r11
+ 248:	af 90       	pop	r10
+ 24a:	9f 90       	pop	r9
+ 24c:	8f 90       	pop	r8
+ 24e:	08 95       	ret
+
+00000250 <__divmodhi4>:
+ 250:	97 fb       	bst	r25, 7
+ 252:	07 2e       	mov	r0, r23
+ 254:	16 f4       	brtc	.+4      	; 0x25a <__divmodhi4+0xa>
+ 256:	00 94       	com	r0
+ 258:	07 d0       	rcall	.+14     	; 0x268 <__divmodhi4_neg1>
+ 25a:	77 fd       	sbrc	r23, 7
+ 25c:	09 d0       	rcall	.+18     	; 0x270 <__divmodhi4_neg2>
+ 25e:	0e 94 3c 01 	call	0x278	; 0x278 <__udivmodhi4>
+ 262:	07 fc       	sbrc	r0, 7
+ 264:	05 d0       	rcall	.+10     	; 0x270 <__divmodhi4_neg2>
+ 266:	3e f4       	brtc	.+14     	; 0x276 <__divmodhi4_exit>
+
+00000268 <__divmodhi4_neg1>:
+ 268:	90 95       	com	r25
+ 26a:	81 95       	neg	r24
+ 26c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 26e:	08 95       	ret
+
+00000270 <__divmodhi4_neg2>:
+ 270:	70 95       	com	r23
+ 272:	61 95       	neg	r22
+ 274:	7f 4f       	sbci	r23, 0xFF	; 255
+
+00000276 <__divmodhi4_exit>:
+ 276:	08 95       	ret
+
+00000278 <__udivmodhi4>:
+ 278:	aa 1b       	sub	r26, r26
+ 27a:	bb 1b       	sub	r27, r27
+ 27c:	51 e1       	ldi	r21, 0x11	; 17
+ 27e:	07 c0       	rjmp	.+14     	; 0x28e <__udivmodhi4_ep>
+
+00000280 <__udivmodhi4_loop>:
+ 280:	aa 1f       	adc	r26, r26
+ 282:	bb 1f       	adc	r27, r27
+ 284:	a6 17       	cp	r26, r22
+ 286:	b7 07       	cpc	r27, r23
+ 288:	10 f0       	brcs	.+4      	; 0x28e <__udivmodhi4_ep>
+ 28a:	a6 1b       	sub	r26, r22
+ 28c:	b7 0b       	sbc	r27, r23
+
+0000028e <__udivmodhi4_ep>:
+ 28e:	88 1f       	adc	r24, r24
+ 290:	99 1f       	adc	r25, r25
+ 292:	5a 95       	dec	r21
+ 294:	a9 f7       	brne	.-22     	; 0x280 <__udivmodhi4_loop>
+ 296:	80 95       	com	r24
+ 298:	90 95       	com	r25
+ 29a:	bc 01       	movw	r22, r24
+ 29c:	cd 01       	movw	r24, r26
+ 29e:	08 95       	ret
+
+000002a0 <_exit>:
+ 2a0:	f8 94       	cli
+
+000002a2 <__stop_program>:
+ 2a2:	ff cf       	rjmp	.-2      	; 0x2a2 <__stop_program>
